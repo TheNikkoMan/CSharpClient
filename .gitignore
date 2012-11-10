@@ -13,9 +13,7 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
-[Bb]in
-[Dd]ebug*/
+CsharpClient/bin/*
 *.sbr
-obj/
-[Rr]elease*/
+CsharpClient/obj/*
 _ReSharper*/

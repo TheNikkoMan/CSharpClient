@@ -62,7 +62,7 @@ namespace Client
             }
             NetworkStream stream = listener.GetStream();
             Thread ConsoleKeyListener = new Thread(new ThreadStart(ListerKeyBoardEvent));
-            Console.WriteLine("Type help for a list of commands.");
+            Console.WriteLine("\nType help for a list of commands.");
             ConsoleKeyListener.Start();
             while (true)
             {
@@ -80,9 +80,17 @@ namespace Client
             while (true)
             {
                 ConsoleInput = Console.ReadLine();
-                if ((ConsoleInput == "quit") || (ConsoleInput == "exit"))
+                switch (ConsoleInput.ToLower())
                 {
-                    Environment.Exit(0);
+                    case "quit":
+                        Environment.Exit(0);
+                        break;
+                    case "exit":
+                        Environment.Exit(0);
+                        break;
+                    case "help":
+                        Console.WriteLine("The available gcommands are:\nhelp: Opens this list.\nexit: see quit.\nquit: Closes the consolewindow, killing the client.");
+                        break;
                 }
             }
         }

@@ -5,16 +5,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-
-// TODO:
-// 1. Catch System.Net.Sockets.SocketException and retry connection DONE DONE
-// 2. Enable q to quit DONE DONE
-
-
-
-
-
-
 namespace Client
 {
     class Program
@@ -72,8 +62,7 @@ namespace Client
             }
             NetworkStream stream = listener.GetStream();
             Thread ConsoleKeyListener = new Thread(new ThreadStart(ListerKeyBoardEvent));
-            //StreamWriter writeStream = new StreamWriter(stream);
-            Console.WriteLine("Press the Q key at any time to exit");
+            Console.WriteLine("Type help for a list of commands.");
             ConsoleKeyListener.Start();
             while (true)
             {
@@ -87,13 +76,15 @@ namespace Client
 
         public static void ListerKeyBoardEvent()
         {
-            do
+            string ConsoleInput;
+            while (true)
             {
-                if (Console.ReadKey(true).Key == ConsoleKey.Q)
+                ConsoleInput = Console.ReadLine();
+                if ((ConsoleInput == "quit") || (ConsoleInput == "exit"))
                 {
                     Environment.Exit(0);
                 }
-            } while (true);
+            }
         }
     }
 }

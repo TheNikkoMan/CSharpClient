@@ -4,3 +4,6 @@ D:\Dropbox\Visual C#\CsharpClient\CsharpClient\bin\Debug\CsharpClient.pdb
 D:\Dropbox\Visual C#\CsharpClient\CsharpClient\obj\Debug\CsharpClient.exe
 D:\Dropbox\Visual C#\CsharpClient\CsharpClient\obj\Debug\CsharpClient.pdb
 D:\Dropbox\Visual C#\CsharpClient\CsharpClient\obj\Debug\CsharpClient.csprojResolveAssemblyReference.cache
+D:\Visual C#\CsharpClient\CsharpClient\bin\Debug\CsharpClient.exe.config
+D:\Visual C#\CsharpClient\CsharpClient\obj\Debug\CsharpClient.exe
+D:\Visual C#\CsharpClient\CsharpClient\obj\Debug\CsharpClient.pdb

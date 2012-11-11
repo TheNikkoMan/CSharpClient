@@ -9,7 +9,8 @@ namespace Client
 {
     class Program
     {
-        static void Main(string[] args)
+        public static bool exit;
+        public static void Main(string[] args)
         {
             int localPort = 27000;
             int bufferSize = 200;
@@ -17,7 +18,7 @@ namespace Client
             string PortString;
             TcpClient listener;
             Console.WriteLine("Please input the host address and the port number you want to connect to, separated by a press on Return. \nEnter nothing for localhost:27000");
-            connectHost:
+         connectHost:
             Console.Write("Host: ");
             host = Console.ReadLine();
             try
@@ -64,7 +65,7 @@ namespace Client
             Thread ConsoleKeyListener = new Thread(new ThreadStart(ListerKeyBoardEvent));
             Console.WriteLine("\nType help for a list of commands.");
             ConsoleKeyListener.Start();
-            while (true)
+            while ((!exit))
             {
                 stream.Read(ByteBuffer, 0, bufferSize);
                 string returndata = Encoding.UTF8.GetString(ByteBuffer.Reverse().SkipWhile(x => x == 0).Reverse().ToArray());
@@ -77,19 +78,27 @@ namespace Client
         public static void ListerKeyBoardEvent()
         {
             string ConsoleInput;
+            Program threadlistener = new Program();
             while (true)
             {
                 ConsoleInput = Console.ReadLine();
                 switch (ConsoleInput.ToLower())
                 {
                     case "quit":
+                        Console.WriteLine("You reached the exit-block");
+                        threadlistener.Client.Disconnect(false);
+                        Console.WriteLine("You should be disconnected now");
                         Environment.Exit(0);
                         break;
                     case "exit":
-                        Environment.Exit(0);
-                        break;
+                        goto case "quit";
                     case "help":
-                        Console.WriteLine("The available gcommands are:\nhelp: Opens this list.\nexit: see quit.\nquit: Closes the consolewindow, killing the client.");
+                        Console.WriteLine("The available commands are:\nhelp: Opens this list.\nexit: see quit.\nquit: Closes the consolewindow, killing the client.");
+                        break;
+                    //case (StartsWith("send")):
+
+                    default:
+                        Console.WriteLine("Unknown command. Try the 'help' command for a list of commands'");
                         break;
                 }
             }
